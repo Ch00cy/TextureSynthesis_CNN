@@ -1,5 +1,5 @@
-import numpy as np
-import pdb
+import numpy as np  # 과학 계산을 위한 라이브러리로서 다차원 배열을 처리하는데 필요한 여러 유용한 기능을 제공
+import pdb  #  파이썬 프로그램을 위한 대화형 소스 코드 디버거
 
 def gram_mse_loss(activations, target_gram_matrix, weight=1., linear_transform=None):
     '''

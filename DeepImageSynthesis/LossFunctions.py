@@ -4,15 +4,21 @@ import pdb  #  파이썬 프로그램을 위한 대화형 소스 코드 디버�
 def gram_mse_loss(activations, target_gram_matrix, weight=1., linear_transform=None):
     '''
     This function computes an elementwise mean squared distance between the gram matrices of the source and the generated image.
+    (이 함수는 소스의 그램 행렬과 생성된 이미지 그램 사이의 요소별 평균 제곱 거리를 계산합니다.)
 
     :param activations: the network activations in response to the image that is generated
+        (생성된 이미지에 대한 응답으로 네트워크 활성화)
     :param target_gram_matrix: gram matrix in response to the source image
+        (소스 이미지에 대한 응답으로 그램 행렬)
     :param weight: scaling factor for the loss function
+        (손실 함수의 배율 인수)
     :param linear_transform: linear transform that is applied to the feature vector at all positions before gram matrix computation
+        (그램 행렬 계산 전에 모든 위치에서 특징 벡터에 적용되는 선형 변환)
     :return: mean squared distance between normalised gram matrices and gradient wrt activations
+        (정규화 된 그램 행렬과 그래디언트 wrt 활성화 사이의 평균 제곱 거리)
     '''
 
-    N = activations.shape[1]
+    N = activations.shape[1]    # [0]*[1] 행렬    -> 열 개수 출력
     fm_size = np.array(activations.shape[2:])
     M = np.prod(fm_size)
     G_target = target_gram_matrix
@@ -32,12 +38,18 @@ def gram_mse_loss(activations, target_gram_matrix, weight=1., linear_transform=N
 def meanfm_mse_loss(activations, target_activations, weight=1., linear_transform=None):
     '''
     This function computes an elementwise mean squared distance between the mean feature maps of the source and the generated image.
+    (이 함수는 소스와 생성된 이미지의 평균 기능 맵 사이의 요소별 평균 제곱 거리를 계산합니다.)
 
     :param activations: the network activations in response to the image that is generated
-    :param target_activations: the network activations in response to the source image 
+        (생성된 이미지에 대한 응답으로 네트워크 활성화)
+    :param target_activations: the network activations in response to the source image
+        (소스 이미지에 대한 응답으로 네트워크 활성화)
     :param weight: scaling factor for the loss function
+        (손실 함수의 배율 인수)
     :param linear_transform: linear transform that is applied to the feature vector at all positions before gram matrix computation
+        (그램 행렬 계산 전에 모든 위치에서 특징 벡터에 적용되는 선형 변환)
     :return: mean squared distance between mean feature maps and gradient wrt activations
+        (평균 기능 맵과 그래디언트 wrt 활성화 사이의 평균 제곱 거리)
     '''
 
     N = activations.shape[1]
